@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'ផ្ទាំងគ្រប់គ្រងភោជនីយដ្ឋាន - Owner Portal')</title>
+    <title>@yield('title', __('messages.owner_panel') . ' - Golden Apsara')</title>
 
     <!-- Google Fonts: Kantumruy Pro & Cinzel & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,17 +29,64 @@
             --khmer-gold-light: #F5D77F;
             --khmer-gold-dark: #A67C1E;
             --khmer-gold-gradient: linear-gradient(135deg, #F3D079 0%, #D4AF37 50%, #A67C1E 100%);
-            --sidebar-bg: #0F172A;
-            --sidebar-hover: rgba(255, 255, 255, 0.06);
+            --sidebar-bg: #0B1120;
+            --sidebar-hover: rgba(255, 255, 255, 0.07);
             --content-bg: #F8FAFC;
+            --card-bg: #FFFFFF;
             --card-border: #E2E8F0;
+            --table-header-bg: #F1F5F9;
+            --table-header-color: #475569;
+            --text-main: #0F172A;
+            --text-sub: #64748B;
         }
 
         [data-bs-theme="dark"] {
-            --content-bg: #0F172A;
-            --card-border: rgba(255, 255, 255, 0.1);
-            --bs-body-bg: #0F172A;
+            --content-bg: #0B0F19;
+            --card-bg: #1E293B;
+            --card-border: rgba(255, 255, 255, 0.08);
+            --table-header-bg: #141D2E !important;
+            --table-header-color: #94A3B8 !important;
+            --text-main: #F8FAFC;
+            --text-sub: #94A3B8;
+            --bs-body-bg: #0B0F19;
             --bs-body-color: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background-color: var(--content-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-khmer {
+            font-family: 'Kantumruy Pro', sans-serif;
+        }
+
+        .font-classic {
+            font-family: 'Cinzel', 'Kantumruy Pro', serif;
+            letter-spacing: -0.2px;
+        }
+
+        .font-brand {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.8px;
+        }
+
+        /* Table Header & Table Customization */
+        .table thead th,
+        .table-header-custom,
+        .table-light,
+        [data-bs-theme="dark"] .table-light {
+            background-color: var(--table-header-bg) !important;
+            color: var(--table-header-color) !important;
+            border-bottom: 1px solid var(--card-border) !important;
+            font-weight: 700;
+            font-size: 0.76rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         [data-bs-theme="dark"] body {
@@ -49,18 +96,26 @@
 
         [data-bs-theme="dark"] .owner-topbar {
             background-color: #0F172A !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
         }
 
-        [data-bs-theme="dark"] .card {
+        [data-bs-theme="dark"] .card,
+        [data-bs-theme="dark"] .card-header,
+        [data-bs-theme="dark"] .card-footer,
+        [data-bs-theme="dark"] .modal-content {
             background-color: #1E293B !important;
-            border-color: rgba(255, 255, 255, 0.1) !important;
-            color: #E2E8F0;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+            color: #E2E8F0 !important;
         }
 
         [data-bs-theme="dark"] .table {
             --bs-table-bg: transparent;
             --bs-table-color: #E2E8F0;
+            color: #E2E8F0 !important;
+        }
+
+        [data-bs-theme="dark"] .table td {
+            border-color: rgba(255, 255, 255, 0.06) !important;
             color: #E2E8F0;
         }
 
@@ -69,19 +124,73 @@
             color: #E2E8F0 !important;
         }
 
+        [data-bs-theme="dark"] .bg-light {
+            background-color: #151D2A !important;
+            color: #E2E8F0 !important;
+        }
+
         [data-bs-theme="dark"] .text-dark {
             color: #F8FAFC !important;
         }
 
-        body {
-            font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--content-bg);
-            color: #1E293B;
-            min-height: 100vh;
+        [data-bs-theme="dark"] .text-muted {
+            color: #94A3B8 !important;
         }
 
-        .font-classic, h1, h2, h3, h4 {
-            font-family: 'Cinzel', 'Kantumruy Pro', serif;
+        [data-bs-theme="dark"] .text-secondary {
+            color: #CBD5E1 !important;
+        }
+
+        [data-bs-theme="dark"] .form-control,
+        [data-bs-theme="dark"] .form-select,
+        [data-bs-theme="dark"] .input-group-text {
+            background-color: #0F172A !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+            color: #E2E8F0 !important;
+        }
+
+        [data-bs-theme="dark"] .form-control:focus,
+        [data-bs-theme="dark"] .form-select:focus {
+            border-color: var(--khmer-gold) !important;
+            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.2) !important;
+        }
+
+        [data-bs-theme="dark"] .border,
+        [data-bs-theme="dark"] .border-top,
+        [data-bs-theme="dark"] .border-bottom,
+        [data-bs-theme="dark"] .border-start,
+        [data-bs-theme="dark"] .border-end {
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        [data-bs-theme="dark"] .btn-white {
+            background-color: #1E293B !important;
+            color: #E2E8F0 !important;
+            border-color: rgba(255, 255, 255, 0.15) !important;
+        }
+        [data-bs-theme="dark"] .btn-white:hover {
+            background-color: #2D3748 !important;
+            color: #FFFFFF !important;
+        }
+
+        [data-bs-theme="dark"] .btn-light {
+            background-color: #242F42 !important;
+            color: #F1F5F9 !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+        }
+        [data-bs-theme="dark"] .btn-light:hover {
+            background-color: #334155 !important;
+            color: #FFFFFF !important;
+        }
+
+        [data-bs-theme="dark"] .btn-outline-secondary {
+            color: #CBD5E1 !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        [data-bs-theme="dark"] .btn-outline-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.15) !important;
+            color: var(--khmer-gold-light) !important;
+            border-color: var(--khmer-gold) !important;
         }
 
         /* Modern Sidebar */
@@ -192,7 +301,7 @@
             border: 1px solid var(--card-border);
             border-radius: 16px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 6px 16px -4px rgba(0,0,0,0.04);
-            background: #FFFFFF;
+            background: var(--card-bg);
         }
 
         .stat-card {
@@ -215,11 +324,58 @@
             justify-content: center;
             font-size: 1.35rem;
             flex-shrink: 0;
+            transition: all 0.2s ease;
         }
 
-        /* Status Badge Utilities */
+        /* Theme-Adaptive Stat Icon Themes */
+        .stat-icon-gold {
+            background: rgba(212, 175, 55, 0.15);
+            color: #B48811;
+        }
+        [data-bs-theme="dark"] .stat-icon-gold {
+            background: rgba(212, 175, 55, 0.22);
+            color: #F5D77F;
+        }
+
+        .stat-icon-blue {
+            background: rgba(59, 130, 246, 0.12);
+            color: #2563EB;
+        }
+        [data-bs-theme="dark"] .stat-icon-blue {
+            background: rgba(59, 130, 246, 0.22);
+            color: #60A5FA;
+        }
+
+        .stat-icon-green {
+            background: rgba(16, 185, 129, 0.12);
+            color: #059669;
+        }
+        [data-bs-theme="dark"] .stat-icon-green {
+            background: rgba(16, 185, 129, 0.22);
+            color: #34D399;
+        }
+
+        .stat-icon-orange {
+            background: rgba(249, 115, 22, 0.12);
+            color: #EA580C;
+        }
+        [data-bs-theme="dark"] .stat-icon-orange {
+            background: rgba(249, 115, 22, 0.22);
+            color: #FB923C;
+        }
+
+        .stat-icon-red {
+            background: rgba(239, 68, 68, 0.12);
+            color: #DC2626;
+        }
+        [data-bs-theme="dark"] .stat-icon-red {
+            background: rgba(239, 68, 68, 0.22);
+            color: #F87171;
+        }
+
+        /* Status Badge Utilities - Enhanced for Light & Dark Modes */
         .badge-status {
-            padding: 4px 10px;
+            padding: 5px 12px;
             font-size: 0.76rem;
             font-weight: 600;
             border-radius: 9999px;
@@ -235,29 +391,42 @@
             background-color: currentColor;
         }
         .badge-pending {
-            background: #FEF3C7;
-            color: #B45309;
+            background: rgba(251, 191, 36, 0.16);
+            color: #D97706;
+            border: 1px solid rgba(245, 158, 11, 0.3);
         }
         .badge-confirmed {
-            background: #DBEAFE;
-            color: #1D4ED8;
+            background: rgba(59, 130, 246, 0.16);
+            color: #2563EB;
+            border: 1px solid rgba(59, 130, 246, 0.3);
         }
         .badge-preparing {
-            background: #EDE9FE;
-            color: #6D28D9;
+            background: rgba(139, 92, 246, 0.16);
+            color: #7C3AED;
+            border: 1px solid rgba(139, 92, 246, 0.3);
         }
         .badge-delivery {
-            background: #CFFAFE;
-            color: #0E7490;
+            background: rgba(6, 182, 212, 0.16);
+            color: #0891B2;
+            border: 1px solid rgba(6, 182, 212, 0.3);
         }
         .badge-delivered {
-            background: #D1FAE5;
-            color: #047857;
+            background: rgba(16, 185, 129, 0.16);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
         .badge-cancelled {
-            background: #FEE2E2;
-            color: #B91C1C;
+            background: rgba(239, 68, 68, 0.16);
+            color: #DC2626;
+            border: 1px solid rgba(239, 68, 68, 0.3);
         }
+
+        [data-bs-theme="dark"] .badge-pending { color: #FBBF24; }
+        [data-bs-theme="dark"] .badge-confirmed { color: #60A5FA; }
+        [data-bs-theme="dark"] .badge-preparing { color: #A78BFA; }
+        [data-bs-theme="dark"] .badge-delivery { color: #22D3EE; }
+        [data-bs-theme="dark"] .badge-delivered { color: #34D399; }
+        [data-bs-theme="dark"] .badge-cancelled { color: #F87171; }
 
         /* Royal Gold Pagination Customization */
         .pagination-khmer {
@@ -269,13 +438,17 @@
             font-size: 0.88rem;
             color: #334155;
             border: 1px solid var(--card-border);
-            background: #FFFFFF;
+            background: var(--card-bg);
             transition: all 0.2s ease;
         }
         .pagination-khmer .page-link:hover {
             background: #F1F5F9 !important;
             color: #0F172A !important;
             border-color: #CBD5E1 !important;
+        }
+        [data-bs-theme="dark"] .pagination-khmer .page-link:hover {
+            background: #2D3748 !important;
+            color: #FFFFFF !important;
         }
         .pagination-khmer .page-item.active .page-link {
             background: var(--khmer-gold-gradient) !important;
@@ -286,7 +459,7 @@
         }
         .pagination-khmer .page-item.disabled .page-link {
             opacity: 0.5;
-            background: #F8FAFC;
+            background: var(--content-bg);
         }
     </style>
     @stack('styles')
@@ -304,19 +477,19 @@
                 </span>
                 <div>
                     <h6 class="mb-0 fw-bold text-white font-classic" style="letter-spacing: 0.5px; font-size: 0.95rem;">GOLDEN APSARA</h6>
-                    <small style="color: #64748B; font-size: 0.72rem;">ផ្ទាំងគ្រប់គ្រងភោជនីយដ្ឋាន</small>
+                    <small style="color: #64748B; font-size: 0.72rem;">{{ __('messages.owner_panel') }}</small>
                 </div>
             </div>
         </div>
 
         <!-- Navigation Menu -->
         <div class="py-3 px-1">
-            <div class="px-3 mb-2 text-uppercase text-secondary" style="font-size: 0.68rem; letter-spacing: 1px; font-weight: 700;">ម៉ឺនុយមេ (Main Menu)</div>
+            <div class="px-3 mb-2 text-uppercase text-secondary" style="font-size: 0.68rem; letter-spacing: 1px; font-weight: 700;">{{ app()->getLocale() === 'km' ? 'ម៉ឺនុយមេ' : 'Main Menu' }}</div>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('owner.dashboard') ? 'active' : '' }}" href="{{ route('owner.dashboard') }}">
                         <i class="bi bi-grid-1x2"></i>
-                        <span>ផ្ទាំងគ្រប់គ្រង</span>
+                        <span>{{ __('messages.dashboard') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -325,10 +498,10 @@
                     @endphp
                     <a class="nav-link {{ request()->routeIs('owner.orders.*') ? 'active' : '' }}" href="{{ route('owner.orders.index') }}">
                         <i class="bi bi-receipt"></i>
-                        <span>ការកុម្ម៉ង់</span>
+                        <span>{{ __('messages.manage_orders') }}</span>
                         @if($pendingOrdersCount > 0)
                             <span class="badge ms-auto fw-bold" style="background: #FEF3C7; color: #92400E; font-size: 0.7rem; border-radius: 9999px; padding: 2px 8px;">
-                                {{ $pendingOrdersCount }} ថ្មី
+                                {{ $pendingOrdersCount }} {{ app()->getLocale() === 'km' ? 'ថ្មី' : 'New' }}
                             </span>
                         @endif
                     </a>
@@ -336,19 +509,19 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('owner.foods.*') ? 'active' : '' }}" href="{{ route('owner.foods.index') }}">
                         <i class="bi bi-egg-fried"></i>
-                        <span>មុខម្ហូប</span>
+                        <span>{{ __('messages.manage_foods') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('owner.categories.*') ? 'active' : '' }}" href="{{ route('owner.categories.index') }}">
                         <i class="bi bi-tags"></i>
-                        <span>ប្រភេទមុខម្ហូប</span>
+                        <span>{{ __('messages.manage_categories') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('owner.reports.*') ? 'active' : '' }}" href="{{ route('owner.reports.index') }}">
                         <i class="bi bi-graph-up-arrow"></i>
-                        <span>របាយការណ៍</span>
+                        <span>{{ __('messages.reports') }}</span>
                     </a>
                 </li>
             </ul>
@@ -362,17 +535,17 @@
                          class="rounded-circle border" width="36" height="36" alt="Owner" style="border-color: rgba(212,175,55,0.4) !important; object-fit: cover;">
                     <div class="overflow-hidden">
                         <div class="text-white fw-semibold small text-truncate" style="font-size: 0.82rem;">{{ Auth::user()->name }}</div>
-                        <div style="color: #64748B; font-size: 0.7rem;">មេចុងភៅ &bull; Chef Marco</div>
+                        <div style="color: #64748B; font-size: 0.7rem;">{{ app()->getLocale() === 'km' ? 'មេចុងភៅ' : 'Executive Chef' }} &bull; Marco</div>
                     </div>
                 </div>
                 <div class="d-flex gap-1.5">
                     <a href="{{ route('home') }}" target="_blank" class="btn btn-sm btn-outline-light w-50 py-1" style="font-size: 0.72rem; border-color: rgba(255,255,255,0.15);">
-                        <i class="bi bi-eye me-1"></i> មើលហាង
+                        <i class="bi bi-eye me-1"></i> {{ __('messages.store') }}
                     </a>
                     <form action="{{ route('logout') }}" method="POST" class="w-50">
                         @csrf
                         <button type="submit" class="btn btn-sm btn-outline-danger w-100 py-1" style="font-size: 0.72rem;">
-                            <i class="bi bi-box-arrow-right me-1"></i> ចាកចេញ
+                            <i class="bi bi-box-arrow-right me-1"></i> {{ __('messages.logout') }}
                         </button>
                     </form>
                 </div>
@@ -391,10 +564,10 @@
                 <div class="d-flex align-items-center gap-2.5">
                     <span class="d-inline-flex align-items-center gap-1.5 px-2.5 py-1 rounded-pill" style="background: #ECFDF5; color: #065F46; font-size: 0.76rem; font-weight: 600; border: 1px solid #A7F3D0;">
                         <span class="spinner-grow spinner-grow-sm text-success" style="width: 0.4rem; height: 0.4rem;" role="status"></span>
-                        <span>ហាងកំពុងបើក</span>
+                        <span>{{ app()->getLocale() === 'km' ? 'ហាងកំពុងបើក' : 'Store Open' }}</span>
                     </span>
                     <span class="text-muted d-none d-sm-inline" style="font-size: 0.82rem;">|</span>
-                    <span class="fw-semibold text-dark font-classic d-none d-sm-inline" style="font-size: 0.9rem;">ភោជនីយដ្ឋាន មាសអប្សរា</span>
+                    <span class="fw-semibold text-dark font-classic d-none d-sm-inline" style="font-size: 0.9rem;">{{ __('messages.bistro_name') }}</span>
                 </div>
             </div>
 
@@ -426,7 +599,7 @@
 
                 <a href="{{ route('home') }}" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1.5 d-inline-flex align-items-center gap-1.5" target="_blank" style="font-size: 0.8rem; font-weight: 500;">
                     <i class="bi bi-box-arrow-up-right text-warning"></i>
-                    <span>មើលហាងផ្ទាល់ (Live Store)</span>
+                    <span>{{ app()->getLocale() === 'km' ? 'មើលហាងផ្ទាល់' : 'Live Store' }}</span>
                 </a>
             </div>
         </header>
@@ -454,7 +627,7 @@
         </div>
 
         <footer class="bg-white border-top py-3 px-4 text-center text-muted small mt-auto" style="border-top-color: var(--card-border) !important; font-size: 0.78rem;">
-            <span>ប្រព័ន្ធគ្រប់គ្រងភោជនីយដ្ឋាន &bull; Golden Apsara Bistro</span>
+            <span>{{ __('messages.bistro_name') }} &bull; {{ __('messages.owner_panel') }}</span>
         </footer>
     </div>
 
